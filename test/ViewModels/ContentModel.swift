@@ -13,6 +13,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
     
     var  locationManager  = CLLocationManager()
     
+    @Published var sneakers = [Sneakers]()
+    
     override init () {
         
         super.init()
@@ -47,12 +49,12 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
             
             locationManager.stopUpdatingLocation()
             
-            getSneakerBrand(category: "sneakers", location: userLocation!)
+            getSneakerBrand(category: Constants.sneakersKey, location: userLocation!)
         }
         
         func getSneakerBrand(category:String, location:CLLocation) {
             
-            var urlComponents = URLComponents(string: "https://the-sneaker-database.p.rapidapi.com/search")
+            var urlComponents = URLComponents(string: Constants.apiUrl )
                 urlComponents?.queryItems = [
                     URLQueryItem(name: "limit", value: "10"),
                     URLQueryItem(name: "query", value: category)
@@ -62,7 +64,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
             if let url = url {
                 
                 let headers = [
-                    "X-RapidAPI-Key": "ece864edddmsh5dcae587fc1ab20p11d986jsn00085470bb28",
+                    "X-RapidAPI-Key": Constants.apiKey ,
                     "X-RapidAPI-Host": "the-sneaker-database.p.rapidapi.com"
                 ]
                 
@@ -75,7 +77,21 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
                 let dataTask = session.dataTask(with: request) {(data, response, error) in
                     
                     if error == nil {
-                        print(response as Any)
+                       
+                        do {
+                            let decoder = JSONDecoder()
+                            let result = try decoder.decode(SneakersSearch.self, from: data!)
+                            
+                            DispatchQueue.main.async {
+                                if category == Constants.sneakersKey  {
+                                    self.sneakers = result.results
+                                }
+                            }
+                           
+                        }
+                        catch {
+                            print(error)
+                        }
                     }
                 }
                 dataTask.resume()

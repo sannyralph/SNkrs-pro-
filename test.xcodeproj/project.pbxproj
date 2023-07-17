@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0C05BFE12A5EAEB100E707B0 /* Sneakers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C05BFE02A5EAEB100E707B0 /* Sneakers.swift */; };
+		0C786CFD2A65A309002E8C5F /* SneakersSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C786CFC2A65A309002E8C5F /* SneakersSearch.swift */; };
+		0C786D002A65E260002E8C5F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C786CFF2A65E260002E8C5F /* Constants.swift */; };
 		0CBA7A562A2D32FA006F08BF /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA7A552A2D32FA006F08BF /* PostView.swift */; };
 		0CBA7A582A2D3315006F08BF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA7A572A2D3315006F08BF /* HomeView.swift */; };
 		0CBA7A5A2A2D33A2006F08BF /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CBA7A592A2D33A2006F08BF /* ProfileView.swift */; };
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		0C05BFE02A5EAEB100E707B0 /* Sneakers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sneakers.swift; sourceTree = "<group>"; };
+		0C786CFC2A65A309002E8C5F /* SneakersSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SneakersSearch.swift; sourceTree = "<group>"; };
+		0C786CFF2A65E260002E8C5F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0CBA7A552A2D32FA006F08BF /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		0CBA7A572A2D3315006F08BF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0CBA7A592A2D33A2006F08BF /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -56,6 +60,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C786CFE2A65E1F9002E8C5F /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				0C786CFF2A65E260002E8C5F /* Constants.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		0CE4EF022A44ACF500629C89 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				0C05BFE02A5EAEB100E707B0 /* Sneakers.swift */,
+				0C786CFC2A65A309002E8C5F /* SneakersSearch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -110,6 +123,7 @@
 				0CE4EF042A44AD0E00629C89 /* ViewModels */,
 				0CE4EF032A44AD0300629C89 /* Models */,
 				0CE4EF022A44ACF500629C89 /* Views */,
+				0C786CFE2A65E1F9002E8C5F /* Helper */,
 				0CE5A0E02A27849700AE27D8 /* testApp.swift */,
 				0CE841802A426B8B004A64A2 /* DataService.swift */,
 				0CE841822A426BB0004A64A2 /* CollectionsItem.swift */,
@@ -204,6 +218,8 @@
 				0CE4EF062A44AD8B00629C89 /* ContentModel.swift in Sources */,
 				0CE8417D2A42664F004A64A2 /* CollectorsView.swift in Sources */,
 				0CE841812A426B8B004A64A2 /* DataService.swift in Sources */,
+				0C786D002A65E260002E8C5F /* Constants.swift in Sources */,
+				0C786CFD2A65A309002E8C5F /* SneakersSearch.swift in Sources */,
 				0C05BFE12A5EAEB100E707B0 /* Sneakers.swift in Sources */,
 				0CBA7A562A2D32FA006F08BF /* PostView.swift in Sources */,
 				0CE841792A41D1D2004A64A2 /* SwapView.swift in Sources */,
