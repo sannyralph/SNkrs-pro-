@@ -9,66 +9,36 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @State private var hovered = false
+    @ObservedObject var contentModel = ContentModel()
+    @State private var searchText = ""
+    @EnvironmentObject var model: ContentModel
     
     var body: some View {
-        NavigationStack {
-            
-            HStack {
-    
-                Spacer()
-                NavigationLink(destination: CollectorsView()) {
-                                    Text("Collectors")
-                                    .padding(5)
-                                    .foregroundColor(Color.white)
-                                    .font(.headline)
-                                    .background(Color.black)
-                                    .cornerRadius(30)
-                                    
-    
-                           }
+        
+        if model.sneakers.count != 0 {
+            VStack (alignment: .leading){
+                HStack{
+                    TextField("Search", text: $searchText)
+                        .padding(.horizontal)
+                        .background(Color(.systemGray6))
+                        .cornerRadius(8)
+                }
                 
-               
-                Spacer()
-                NavigationLink(destination: SwapView()){
-                                   Text("Swap")
-                                    .padding(5)
-                                    .foregroundColor(Color.white)
-                                    .font(.headline)
-                                    .background(Color.black)
-                                    .cornerRadius(30)
-                           }
-                Spacer()
-                NavigationLink(destination: CollectionsView()) {
-                                    Text("Collections")
-                                    .padding(5)
-                                    .foregroundColor(Color.white)
-                                    .font(.headline)
-                                    .background(Color.black)
-                                    .cornerRadius(30)
-                           }
-                Spacer()
-                
+                Divider()
+                CollectionsView()
             }
-            
-            
-            Spacer()
-            HStack {
-                Image("unnamed")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }
-            Spacer()
-            
-            
         }
         
-       
+        else {
+            ProgressView()
+        }
+        
     }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
+    
+    
+    struct HomeView_Previews: PreviewProvider {
+        static var previews: some View {
+            HomeView()
+        }
     }
 }

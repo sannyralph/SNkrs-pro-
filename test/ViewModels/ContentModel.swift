@@ -13,7 +13,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
     
     var  locationManager  = CLLocationManager()
     
+    @Published var authorizationState = CLAuthorizationStatus.notDetermined
     @Published var sneakers = [Sneakers]()
+    @Published var searchText = ""
     
     override init () {
         
@@ -49,15 +51,21 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
             
             locationManager.stopUpdatingLocation()
             
-            getSneakerBrand(category: Constants.sneakersKey, location: userLocation!)
+            func performSearch(searchText: String) {
+                guard !searchText.isEmpty else {
+                    // Show an alert or handle an empty search text
+                    return
+                }
+            }
+            getSneakerBrand(category: Constants.sneakersKey, location: userLocation!, searchText: searchText)
         }
         
-        func getSneakerBrand(category:String, location:CLLocation) {
+        func getSneakerBrand(category:String, location:CLLocation, searchText: String) {
             
             var urlComponents = URLComponents(string: Constants.apiUrl )
                 urlComponents?.queryItems = [
                     URLQueryItem(name: "limit", value: "10"),
-                    URLQueryItem(name: "query", value: category)
+                    URLQueryItem(name: "query", value: searchText)
                 ]
             let url = urlComponents?.url
             
@@ -82,6 +90,10 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject  {
                             let decoder = JSONDecoder()
                             let result = try decoder.decode(SneakersSearch.self, from: data!)
                             
+                            for s in result.results {
+                                s.getImageData()
+                            }
+        
                             DispatchQueue.main.async {
                                 if category == Constants.sneakersKey  {
                                     self.sneakers = result.results
